@@ -6,13 +6,43 @@
   
   <title>Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta property="og:type" content="website">
+  <meta name="description" content="从 0.1 到 1 的 IDEA debug Arthas 记录前言 关于环境  为什么是 0.1 ？ 因为笔者主要使用的机器是学校机房的电脑，系统是 Windows 10，之前开发需要安装和配置过 Git for Windows、 IntelliJ IDEA、 JDK 1.8 以及 node，也不完全是从零开始。后来在自己日常开发用的笔记本上也尝试了，配过的环境更多，总体遇到的问题大差不差。">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/2023/07/07/%E5%9C%A8IDEA%E4%B8%AD%E8%B0%83%E8%AF%95Arthas-%E4%BB%8E%E5%A4%B1%E8%B4%A5%E5%88%B0%E6%88%90%E5%8A%9F/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="从 0.1 到 1 的 IDEA debug Arthas 记录前言 关于环境  为什么是 0.1 ？ 因为笔者主要使用的机器是学校机房的电脑，系统是 Windows 10，之前开发需要安装和配置过 Git for Windows、 IntelliJ IDEA、 JDK 1.8 以及 node，也不完全是从零开始。后来在自己日常开发用的笔记本上也尝试了，配过的环境更多，总体遇到的问题大差不差。">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701115734865.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701115921823.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230629195759760.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701124528570.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/image-20230707003434981.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701121733870.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701132236626.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701121419247.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/34986660/1688004502971-a1fd4011-fc97-4a2b-85aa-fdc31691cde0.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/image-20230706232633005.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/debug-attach.gif">
+<meta property="og:image" content="https://user-images.githubusercontent.com/1683936/46815581-bc7ac980-cdad-11e8-9414-2b77d5a5cc3b.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701130540345.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701130649036.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701131332893.png">
+<meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701131117692.png">
+<meta property="og:image" content="https://cdn.nlark.com/yuque/0/2023/png/34986660/1688004618404-f7abf036-28a6-45cc-b2ee-a81beadd2223.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/image-20230707140221207.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/image-20230707140117879.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/image-20230707140330640.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/image-20230707135056809.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/image-20230707135152287.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/image-20230707135508095.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/image-20230707135228941.png">
+<meta property="og:image" content="https://gitee.com/yanyir/se-img/raw/master/image-20230707135339364.png">
+<meta property="article:published_time" content="2023-07-07T08:45:24.230Z">
+<meta property="article:modified_time" content="2023-07-07T07:42:32.927Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701115734865.png">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -71,9 +101,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-在IDEA中调试Arthas-从失败到成功" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-在IDEA中调试Arthas-从失败到成功" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2023/07/07/%E5%9C%A8IDEA%E4%B8%AD%E8%B0%83%E8%AF%95Arthas-%E4%BB%8E%E5%A4%B1%E8%B4%A5%E5%88%B0%E6%88%90%E5%8A%9F/" class="article-date">
   <time class="dt-published" datetime="2023-07-07T08:45:24.230Z" itemprop="datePublished">2023-07-07</time>
@@ -364,62 +392,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/07/07/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-07-07T08:29:38.230Z" itemprop="datePublished">2023-07-07</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/2023/07/07/hello-world/">Hello World</a>
-    </h1>
+    <a href="/2023/07/07/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hello World</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/07/07/hello-world/" data-id="cljsc0ojy0000swt4fn3ifaq1" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
 
 
 </section>
