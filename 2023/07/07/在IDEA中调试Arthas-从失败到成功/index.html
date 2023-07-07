@@ -6,12 +6,12 @@
   
   <title>从 0.1 到 1 的 IDEA debug Arthas 记录 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="前言 关于环境  为什么是 0.1 ？ 因为我主要使用的机器是学校机房的电脑，系统是 Windows 10，之前开发需要安装和配置过 Git for Windows、 IntelliJ IDEA、 JDK 1.8 以及 node，也不完全是从零开始。后来在自己日常开发用的笔记本上也尝试了，配过的环境更多，总体遇到的问题大差不差。    关于过程  本文主要是我按照 Debug Arthas In">
+  <meta name="description" content="前言 关于环境  为什么是 0.1 ？ 因为我主要使用的机器是学校机房的电脑，系统是 Windows 10，之前开发需要安装和配置过 Git for Windows、 IntelliJ IDEA、 JDK 1.8 以及 Node.js，也不完全是从零开始。后来在自己日常开发用的笔记本上也尝试了，配过的环境更多，总体遇到的问题大差不差。    关于过程  本文主要是我按照 Debug Arthas">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从 0.1 到 1 的 IDEA debug Arthas 记录">
 <meta property="og:url" content="http://example.com/2023/07/07/%E5%9C%A8IDEA%E4%B8%AD%E8%B0%83%E8%AF%95Arthas-%E4%BB%8E%E5%A4%B1%E8%B4%A5%E5%88%B0%E6%88%90%E5%8A%9F/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="前言 关于环境  为什么是 0.1 ？ 因为我主要使用的机器是学校机房的电脑，系统是 Windows 10，之前开发需要安装和配置过 Git for Windows、 IntelliJ IDEA、 JDK 1.8 以及 node，也不完全是从零开始。后来在自己日常开发用的笔记本上也尝试了，配过的环境更多，总体遇到的问题大差不差。    关于过程  本文主要是我按照 Debug Arthas In">
+<meta property="og:description" content="前言 关于环境  为什么是 0.1 ？ 因为我主要使用的机器是学校机房的电脑，系统是 Windows 10，之前开发需要安装和配置过 Git for Windows、 IntelliJ IDEA、 JDK 1.8 以及 Node.js，也不完全是从零开始。后来在自己日常开发用的笔记本上也尝试了，配过的环境更多，总体遇到的问题大差不差。    关于过程  本文主要是我按照 Debug Arthas">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701115734865.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701115921823.png">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img2/test/image-%E6%89%A7%E8%A1%8Chelp.png">
 <meta property="og:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img2/test/image-IDEA%E4%B8%AD%E8%BF%90%E8%A1%8C%E5%88%B0%E6%96%AD%E7%82%B9%E5%A4%84%E5%81%9C%E6%AD%A2.png">
 <meta property="article:published_time" content="2023-07-07T09:00:00.000Z">
-<meta property="article:modified_time" content="2023-07-07T11:34:48.260Z">
+<meta property="article:modified_time" content="2023-07-07T12:03:47.572Z">
 <meta property="article:author" content="John Doe">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701115734865.png">
@@ -127,7 +127,7 @@
 <li><p>关于环境</p>
 <ul>
 <li><p>为什么是 0.1 ？</p>
-<p>因为我主要使用的机器是学校机房的电脑，系统是 Windows 10，之前开发需要安装和配置过 Git for Windows、 IntelliJ IDEA、 JDK 1.8 以及 node，也不完全是从零开始。后来在自己日常开发用的笔记本上也尝试了，配过的环境更多，总体遇到的问题大差不差。</p>
+<p>因为我主要使用的机器是学校机房的电脑，系统是 Windows 10，之前开发需要安装和配置过 Git for Windows、 IntelliJ IDEA、 JDK 1.8 以及 Node.js，也不完全是从零开始。后来在自己日常开发用的笔记本上也尝试了，配过的环境更多，总体遇到的问题大差不差。</p>
 </li>
 </ul>
 </li>
@@ -147,6 +147,14 @@
 <li>然而，其实针对上面这个问题，可以直接在目录下右键 Git bash here，然后直接在 Git Bash 里执行脚本而不是在 cmd 或者 powershell里，这样执行完之后 bash 的窗口就不会关闭了。但我写这篇记录之前没意识到这件事，也懒得重来了。</li>
 </ul>
 </li>
+<li><p>涉及的一些点：</p>
+<ul>
+<li>npm 安装 yarn</li>
+<li>Windows安装 MinGW 64位</li>
+<li>win10安装开启telnet服务</li>
+<li>使用 IDEA 进行远程 JVM 调试</li>
+</ul>
+</li>
 </ul>
 <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>Arthas的debug分为两部分：如何attach到目标进程和在目标进程中执行诊断代码的逻辑。</p>
 <h2 id="一、如何-attach-到目标-JVM"><a href="#一、如何-attach-到目标-JVM" class="headerlink" title="一、如何 attach 到目标 JVM"></a>一、如何 attach 到目标 JVM</h2><h3 id="1-下载好源码之后，执行as-package-sh进行打包"><a href="#1-下载好源码之后，执行as-package-sh进行打包" class="headerlink" title="1. 下载好源码之后，执行as-package.sh进行打包"></a>1. 下载好源码之后，执行<code>as-package.sh</code>进行打包</h3><ul>
@@ -164,7 +172,7 @@
 <ul>
 <li><p>关于yarn，也有可能仅仅是连不上github：<img src="https://cdn.jsdelivr.net/gh/goodtestyy/img1@main/yytest/image-20230701115921823.png" alt="GitHub连接超时"></p>
 </li>
-<li><p>解决：安装 yarn</p>
+<li><p>解决：npm 安装 yarn</p>
 <p>我之前已经安装过 node，用 node 自带的 npm 包管理器就可以安装 yarn：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install --global yarn</span><br></pre></td></tr></table></figure>
 
@@ -212,7 +220,7 @@
 <h4 id="1-5-Failed-to-delete-E-repositories-arthas-web-ui-target-node-node-exe"><a href="#1-5-Failed-to-delete-E-repositories-arthas-web-ui-target-node-node-exe" class="headerlink" title="1.5 Failed to delete E:\repositories\arthas\web-ui\target\node\node.exe"></a>1.5 Failed to delete E:\repositories\arthas\web-ui\target\node\node.exe</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[ERROR] Failed to execute goal org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean (default-clean) on project web-ui: Failed to clean project: Failed to delete E:\repositories\arth</span><br><span class="line">as\web-ui\target\node\node.exe -&gt; [Help 1]</span><br><span class="line">org.apache.maven.lifecycle.LifecycleExecutionException: Failed to execute goal org.apache.maven.plugins:maven-clean-plugin:3.2.0:clean (default-clean) on project web-ui: Failed to clea</span><br><span class="line">n project: Failed to delete E:\repositories\arthas\web-ui\target\node\node.exe</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">[ERROR] For more information about the errors and possible solutions, please read the following articles:</span><br><span class="line">[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoExecutionException</span><br></pre></td></tr></table></figure>
 
 <ul>
-<li>这个问题偶尔会出现，但什么都不做重新执行一遍又没有这个问题了。</li>
+<li>没有解决：这个问题偶尔会出现，但什么都不做重新执行一遍又没有这个问题了。</li>
 </ul>
 <h4 id="1-6-程序包jdk-jfr不存在"><a href="#1-6-程序包jdk-jfr不存在" class="headerlink" title="1.6 程序包jdk.jfr不存在"></a>1.6 程序包jdk.jfr不存在</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">[ERROR] COMPILATION ERROR :</span><br><span class="line">[INFO] -------------------------------------------------------------</span><br><span class="line">[ERROR] /E:/aaa/arthas/core/src/main/java/com/taobao/arthas/core/command/basic1000/JFRCommand.java:[16,15] 程序包jdk.jfr不存在</span><br><span class="line">[ERROR] /E:/aaa/arthas/core/src/main/java/com/taobao/arthas/core/command/basic1000/JFRCommand.java:[17,15] 程序包jdk.jfr不存在</span><br><span class="line">[ERROR] /E:/aaa/arthas/core/src/main/java/com/taobao/arthas/core/command/basic1000/JFRCommand.java:[60,30] 找不到符号</span><br><span class="line">  符号:   类 Recording</span><br><span class="line">  位置: 类 com.taobao.arthas.core.command.basic1000.JFRCommand</span><br><span class="line">[ERROR] /E:/aaa/arthas/core/src/main/java/com/taobao/arthas/core/command/basic1000/JFRCommand.java:[380,18] 找不到符号</span><br><span class="line">  符号:   类 Recording</span><br><span class="line">  位置: 类 com.taobao.arthas.core.command.basic1000.JFRCommand</span><br><span class="line">[ERROR] /E:/aaa/arthas/core/src/main/java/com/taobao/arthas/core/command/basic1000/JFRCommand.java:[391,33] 找不到符号</span><br><span class="line">  符号:   类 Recording</span><br><span class="line">  位置: 类 com.taobao.arthas.core.command.basic1000.JFRCommand</span><br><span class="line">[INFO] 5 errors</span><br><span class="line">[INFO] -------------------------------------------------------------</span><br></pre></td></tr></table></figure>
 
@@ -395,7 +403,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2023/07/07/%E5%9C%A8IDEA%E4%B8%AD%E8%B0%83%E8%AF%95Arthas-%E4%BB%8E%E5%A4%B1%E8%B4%A5%E5%88%B0%E6%88%90%E5%8A%9F/" data-id="cljsi2ofc00002wt4e8pohs31" data-title="从 0.1 到 1 的 IDEA debug Arthas 记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2023/07/07/%E5%9C%A8IDEA%E4%B8%AD%E8%B0%83%E8%AF%95Arthas-%E4%BB%8E%E5%A4%B1%E8%B4%A5%E5%88%B0%E6%88%90%E5%8A%9F/" data-id="cljsj3m0j0001hot41qlnhum1" data-title="从 0.1 到 1 的 IDEA debug Arthas 记录" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
